@@ -29,10 +29,28 @@ switch ($acao){
         break;
 
     case 'inserir';
+        //1 - não digitou nada ainda, entao devever o formulario
+        //
+        //2 - já digitou - então deve gravar o que veio do formulario
+        //
 
-        include '../views/templates/cabecalho.php';
-        include '../views/categoria/inserir.php';
-        include '../views/templates/rodape.php';
+        if(!isset($_POST['gravar'])){ // ainda não digitou
+            include '../views/templates/cabecalho.php';
+            include '../views/categoria/inserir.php';
+            include '../views/templates/rodape.php';
+        }else{ // já digitou e devo gravar
+
+            $nome = $_POST['nome'];
+            $descricao = $_POST['descricao'];
+
+            $cat = new Categoria($nome, $descricao);
+
+            $crud = new CrudCategoria();
+            $res = $crud->insertCategoria($cat);
+
+            header('location: categorias.php');
+        }
+
         break;
 
      case 'exibir';
@@ -44,7 +62,29 @@ switch ($acao){
         include '../views/categoria/exibir.php';
         break;
 
+    case 'update':
+        $crud = new CrudCategoria();
+        if (isset($_POST['gravar'])){
+            $id = $_POST['id'];
+            $nome = $_POST['nome'];
+            $descricao = $_POST['descricao'];
+            $newcat = new Categoria($id, $nome, $descricao);
+            $res = $crud->updateCategoria($newcat);
+            header('Location: categorias.php');
+        }else{
+            $cat = $crud->getCategoria($_GET['id']);
+            include '../views/categoria/update.php';
+        }
+        break;
+
+    case 'delete':
+        $crud = new CrudCategoria();
+        $res = $crud->deleteCategoria($_GET['id']);
+        header('Location: categorias.php');
+        break;
+
     default:
-        echo 'Acao inválida';
+        echo 'Ação inválida';
 }
+
 

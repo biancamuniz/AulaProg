@@ -61,10 +61,32 @@ class CrudCategoria
         }
     }
 
-    public function updateCategoria(Categoria $cats){
+    public function updateCategoria(Categoria $cat){
+        $this->conexao = DBConnection::getConexao();
+        $sql = "update categoria set nome_categoria = '".$cat->getNome()."', descricao_categoria = '".$cat->getDescricao()."' where id_categoria = ".$cat->getId();
+        echo $sql;
+        try {
+            $resultado = $this->conexao->exec($sql);
+            return $resultado;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return $e->getMessage();
+        }
+
     }
 
     public function deleteCategoria(int $id){
+
+        $this->conexao = DBConnection::getConexao();
+        $sql = "delete from categoria where id_categoria = ".$id;
+        try {
+            $resultado = $this->conexao->exec($sql);
+            return $resultado;
+        }catch(PDOException $e){
+        echo $e->getMessage();
+        return $e->getMessage();
+}
+
 
     }
 }

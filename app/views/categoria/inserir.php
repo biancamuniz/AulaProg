@@ -1,6 +1,6 @@
 <h2>Inserir Categoria</h2>
 
-<form method="post" action="">
+<form method="post" action="app/controllers/categorias.php?acao=inserir">
 
     <label for="nome">NOME</label>
     <input type="text" name="nome" id="nome"/>
