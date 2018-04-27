@@ -68,8 +68,9 @@ switch ($acao){
             $id = $_POST['id'];
             $nome = $_POST['nome'];
             $descricao = $_POST['descricao'];
-            $newcat = new Categoria($id, $nome, $descricao);
+            $newcat = new Categoria($nome, $descricao, $id);
             $res = $crud->updateCategoria($newcat);
+            echo $res;
             header('Location: categorias.php');
         }else{
             $cat = $crud->getCategoria($_GET['id']);
@@ -78,6 +79,7 @@ switch ($acao){
         break;
 
     case 'delete':
+
         $crud = new CrudCategoria();
         $res = $crud->deleteCategoria($_GET['id']);
         header('Location: categorias.php');

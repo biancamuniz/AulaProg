@@ -4,4 +4,4 @@
 
     <a href="app/controllers/categorias.php?acao=update&id=<?=$categoria->getId(); ?>">Alterar categoria</a>
     <br>
-    <a href="app/controllers/categorias.php?acao=delete&?id=<?=$categoria->getId(); ?>">Excluir categoria</a>
+    <a href="app/controllers/categorias.php?acao=delete&id=<?=$categoria->getId(); ?>">Excluir categoria</a>

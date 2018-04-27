@@ -69,7 +69,7 @@ class CrudCategoria
             $resultado = $this->conexao->exec($sql);
             return $resultado;
         }catch(PDOException $e){
-            echo $e->getMessage();
+
             return $e->getMessage();
         }
 
@@ -83,7 +83,6 @@ class CrudCategoria
             $resultado = $this->conexao->exec($sql);
             return $resultado;
         }catch(PDOException $e){
-        echo $e->getMessage();
         return $e->getMessage();
 }
 
