@@ -12,17 +12,15 @@ class Produto
     private $nome;
     private $descricao;
     private $preco;
-    //private $foto;
     private $idCategoria;
 
 
-    public function __construct($id=null, $nome, $descricao, $preco, /*$foto*/ $idCategoria)
+    public function __construct($nome, $descricao, $preco, $idCategoria, $id=null)
     {
         $this->id          = $id;
         $this->nome        = $nome;
         $this->descricao   = $descricao;
         $this->preco       = $preco;
-//        $this->foto        = $foto;
         $this->idCategoria = $idCategoria;
     }
 
@@ -65,16 +63,6 @@ class Produto
     {
         $this->preco = $preco;
     }
-
-//    public function getFoto()
-//    {
-//        return $this->foto;
-//    }
-//
-//    public function setFoto($foto): void
-//    {
-//        $this->foto = $foto;
-//    }
 
     public function getIdCategoria()
     {
