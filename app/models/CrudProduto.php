@@ -26,19 +26,19 @@ class CrudProduto
         return $listaProdutos;
     }
 
-    public function getProduto(int $id){
+    public function getProduto($id){
 
         $this->conexao = DBConnection::getConexao();
 
-        $sql = "select * from produto where id_produto = ".$id;
+        $sql = "select * from produto where id_produto = ". (int) $id;
 
         $result = $this->conexao->query($sql);
 
         $produto = $result->fetch(PDO::FETCH_ASSOC);
 
-        $objcat = new Produto($produto["nome_produto"], $produto["descricao_produto"], $produto['preco_produto'], $produto["id_categoria"]);
+        $objprod = new Produto($produto["nome_produto"], $produto["descricao_produto"], $produto['preco_produto'], $produto["id_categoria"]);
 
-        return $objcat;
+        return $objprod;
     }
 
     public function insertProduto(Produto $produto){
